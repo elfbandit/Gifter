@@ -1,0 +1,138 @@
+<!-- Modal structures -->
+
+<!--Main Exchange modal -->
+<div id="exchangeModal" class="reveal-modal" data-reveal>
+	<h2>Exchanges</h2>
+	<p class="lead">
+		Click an exchange to join or leave it. This lets you see the gifters inside the exchange
+	</p>
+	<div class="alert-box warning round">
+		In order to see other people's wishlists, you mut join at least one exchange
+	</div>
+	<div id="exchange-content">
+		<table>
+			<thead>
+				<tr>
+					<th>Exchange name</th>
+					<th>Joined</th>
+					<th>Moderate</th>
+				</tr>
+			</thead>
+			<tbody></tbody>
+		</table>
+	</div>
+	<p class="lead">
+		Don't see an exchange you like?
+	</p>
+	<div id="exchange-add-button" class="button">
+		Create new Exchange
+	</div>
+	<a class="close-reveal-modal">&#215;</a>
+</div>
+
+<!--Main Exchange modal -->
+<div id="exchange-add-modal" class="reveal-modal" data-reveal>
+	<h2>Add a new Exchange</h2>
+	<p class="lead">
+		Add a new gift exchange. You will need to close it when the gifting is completed
+	</p>
+	<form id="exchange-create-form">
+		<div class="row">
+			<div class="small-8">
+				<div class="row">
+					<div class="small-9 columns">
+						<input type="text" id="exchange-name-input" placeholder="Exchange Name">
+					</div>
+					<div class="small-3 columns">
+						<input type="submit" class="button" name="create" value="Create" />
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</form>
+	<a class="close-reveal-modal">&#215;</a>
+</div>
+
+<!-- Exchange confirm removal modal -->
+<div id="exchange-remove-Modal" class="reveal-modal" data-reveal>
+	<h2>Are you sure you want to leave this exchange?</h2>
+	<div class="alert-box warning round">
+		When you leave this exchange, you will loose claim to any gifts inside of it.
+	</div>
+	<div class="small 2-columns">
+		<div class="row">
+			<div id="exchange-remove-cancel" class="button">
+				Cancel
+			</div>
+			<div id="exchange-remove-confirm" class="button alert">
+				Confirm
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Exchange add requested modal -->
+<div id="exchange-add-Modal" class="reveal-modal" data-reveal>
+	<h2>Your request has been submitted</h2>
+	<div class="alert-box round">
+		Your request to join this exchange has been submitted. Once accepted, you will be able to see the people and gifts inside it.
+	</div>
+	<div class="small 2-columns">
+		<div class="row">
+			<div id="exchange-add-close" class="button close-reveal-modal">
+				Thanks!
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--Exchange moderate modal -->
+<div id="exchange-moderate-modal" class="reveal-modal" data-reveal>
+	<div id="exchange-moderate-title"></div>
+	<div class="alert-box round">
+		Here you can approve and remove people from the exchange.
+	</div>
+	<div class="alert-box secondary">
+  		<label for="usersearch">Add Users to this Exchange: </label>
+  		<input id="usersearch" size="50">
+	</div>
+	<div class="small 3-columns" id="moderator-table">
+		<div class="row">
+			<table>
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Action</th>
+						<th>Remove/Deny</th>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+		</div>
+	</div>
+	<div id="remove-button-container"></div>
+	<a class="close-reveal-modal">&#215;</a>
+</div>
+
+<!--Exchange close modal -->
+<div id="exchange-close-modal" class="reveal-modal" data-reveal>
+	<h2>Close Exchange</h2>
+	<div class="alert-box warning round">
+		Are you sure you want to close this exchange?
+	</div>
+	<p class="lead">
+		Closing the exchange will remove the affected gifts from the affected user's wishlists and reveal the gifter.
+	</p>
+	<div class="small 2-columns">
+		<div class="row">
+			<div data-reveal-id="exchange-moderate-modal"class="button">
+				Cancel
+			</div>
+			<div id="exchange-close-confirm" class="button alert">
+				Confirm
+			</div>
+		</div>
+	</div>
+	<a class="close-reveal-modal">&#215;</a>
+</div>

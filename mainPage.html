@@ -1,0 +1,160 @@
+<div class="row">
+	<div class="large-12 columns">
+
+		<!-- Navigation -->
+
+		<div class="row">
+			<div class="large-12 columns">
+
+				<nav class="top-bar">
+					<ul class="title-area">
+						<!-- Title Area -->
+						<li class="name">
+							<h1><a id="headerMessage" href="main.php"></a></h1>
+							<img src="img/help.png" href="#" title="help" id="mainHelp" height="40px" width="40px"/>
+						</li>
+						<li class="toggle-topbar menu-icon">
+							<a href="#"><span>menu</span></a>
+						</li>
+					</ul>
+
+					<section class="top-bar-section">
+						<!-- Right Nav Section -->
+						<ul class="right">
+							<li class="divider"></li>
+							<li>
+								<a href="main.php" id="myList">My List</a>
+							</li>
+							<li class="divider"></li>
+							<li class="has-dropdown" id="menu">
+								<a>Menu</a>
+								<ul class="dropdown" >
+									<li>
+										<a href="main.php?logout=1">Logout</a>
+									</li>
+									<li>
+										<a id="exchangeMenuButton" href="#" data-reveal-id="exchangeModal">Exchanges</a>
+									</li>
+									<li>
+										<a id="menuHelp" href="#">Help</a>
+									</li>
+								</ul>
+								
+							</li>
+							<li class="divider"></li>
+							<li class="has-dropdown" id="userList">
+								<a>Your Exchanges</a>
+								<ul class="dropdown" >
+									<!-- menuLoad.js will load these options -->
+								</ul>
+							</li>
+						</ul>
+					</section>
+				</nav>
+				<!-- End Top Bar -->
+			</div>
+		</div>
+
+		<!-- End Navigation -->
+
+		<div class="row">
+
+			<!--gift table -->
+			<div class= "large-12 columns" id="mainTableContainer"></div>
+		</div>
+
+		<!-- Shopping List -->
+
+		<!--<div class="large-10 small-6 columns">-->
+
+		<div class="large-12 columns">
+
+			<div class="section-container auto" data-section>
+				<section class="active">
+					<p class="title" data-section-title>
+						<a href="#panel1">Shopping List</a>
+					</p>
+					<div class="content" data-section-content>
+						<div class="panel">
+							<div class="row">
+								<p>
+									<strong>Your shopping list</strong>
+									<hr/>
+
+									<div class= "large-12 columns" id="shoppingTableContainer"></div>
+								</p>
+							</div>
+						</div>
+					</div>
+				</section>
+				<section>
+					<p class="title" data-section-title>
+						<a href="#panel2">Thank You List</a>
+					</p>
+					<div class="content" data-section-content>
+						<div class="panel">
+							<div class="row">
+								<p>
+									<strong>Your Thank-you list
+									<hr/>
+									</strong>
+
+									<div class= "large-12 columns" id="ThankYouTableContainer"></div>
+								</p>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+
+		</div>
+
+		<!-- End Shopping List -->
+	</div>
+</div>
+
+<!-- joyride walkthrough -->
+<div id="mainTour">
+<ol class="joyride-list" data-joyride>
+	<li data-text="Show me around" data-options="tipLocation:top;tipAnimation:fade">
+		<h1>Hello and welcome to gifter!</h1>
+	</li>
+	<li data-id="addRecord" data-text="Next">
+		<h4>Set up your wishlist</h4>
+		<p>
+			Click this to add an item your wishlist
+		</p>
+	</li>
+	<li data-id="userList" data-button="Next" data-options="tipLocation:bottom">
+		<h4>Look at other people's lists</h4>
+		<p>
+			Mouse over this to see your gift exchanges and other people's wish lists
+		</p>
+	</li>
+	<li data-id="exchangeMenuButton" data-button="Next" data-options="tipLocation:bottom,pre_step_callback: openMenu(),post_step_callback: openMenu()">
+		<h4>Exchanges</h4>
+		<p>
+			Select a gift exchange to see the people and gifts in that exchange
+		</p>
+	</li>
+	<li data-id="myList" data-button="Next" data-options="tipLocation:bottom">
+		<h4>Where's my list?</h4>
+		<p>
+			You can always click here to return to your list
+		</p>
+	</li>
+	<li data-id="shoppingTableContainer"  data-text="Next" data-options="tipLocation:top;tipAnimation:fade">
+		<h4>Keep track of what you signed up for</h4>
+		<p>
+			Keep track of your shopping list here
+		</p>
+	</li>
+	<li data-button="Thanks Alex, I got it from here">
+		<h4>I'm also mobile friendly!</h4>
+		<p>
+			I work on your phone and tablets too. Try me out when you're out shopping
+		</p>
+	</li>
+</ol>
+</div>
+
