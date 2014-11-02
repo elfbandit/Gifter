@@ -1,10 +1,12 @@
 <?php
+	//list out the various table options. Update these base options if the calls are ever changed
 	$createAction = $server_path."/Gifter/php/createAction.php";
 	$updateAction = $server_path."/Gifter/php/updateAction.php";
 	$deleteAction = $server_path."/Gifter/php/deleteAction.php";
 	$listAction = $server_path."/Gifter/php/listAction.php";
 	$actions = array();
 	
+	//If the user viewing the table is not the owner, then disable the create, delete, and update options
 	if($_SESSION['userInfo']['userId']==$_SESSION['context']['userId']){
 		$actions['listAction'] = $listAction;
 		$actions['createAction'] = $createAction;
@@ -139,10 +141,31 @@ $(document).ready(function() {
 		//multiselect : true,
 		//selectingCheckboxes : true,
 		//selectOnRowClick :true,
-		
+		//use this to customize the default message
+		messages: {
+			serverCommunicationError: 'An error occured while communicating to the server.',
+    		loadingMessage: 'Loading records...',
+   			noDataAvailable: 'No data available!',
+   			addNewRecord: 'Add to your list',
+  			editRecord: 'Edit Record',
+  			areYouSure: 'Are you sure?',
+			deleteConfirmation: 'This gift will be deleted from your list. Are you sure?',
+ 			save: 'Save',
+ 			saving: 'Saving',
+  			cancel: 'Cancel',
+ 			deleteText: 'Delete',
+  			deleting: 'Deleting',
+  			error: 'Error',
+   			close: 'Close',
+			cannotLoadOptionsFor: 'Can not load options for field {0}',
+		   	pagingInfo: 'Showing {0}-{1} of {2}',
+		    pageSizeChangeLabel: 'Row count',
+		    gotoPageLabel: 'Go to page',
+		    canNotDeletedRecords: 'Can not deleted {0} of {1} records!',
+		    deleteProggress: 'Deleted {0} of {1} records, processing...'
+		},
 		actions :
-			<?php echo json_encode($actions); ?>
-					,
+			<?php echo json_encode($actions); ?>,
 		fields : {
 		giftId : {
 				key : true,
@@ -175,7 +198,7 @@ $(document).ready(function() {
 				 //only show gifter column if person viewing is NOT the current user ?>
 			,gifter : {
 				title : 'Gifter',
-				width : '100px',
+				width : '10%',
 				sorting : false,
 				create : false,
 				edit : false,
@@ -189,7 +212,7 @@ $(document).ready(function() {
       				} else if(data.record.gifterId){
       					return $('<p>Claimed</p>');
       				}else {
-        		    	$claimButton = $('<div class="button tiny" name="claim" style="width:100px">claim this gift </div>');
+        		    	$claimButton = $('<div class="button tiny" name="claim">claim gift </div>');
         		    	$claimButton.click(function(){
         		    		$.ajax({
         		    			type:"POST",
@@ -237,7 +260,6 @@ $actions['deleteAction'] = $deleteAction."?table=shop";
 		deleteConfirmation: function(data) {
     		data.deleteConfirmMessage = 'Are you sure to delete this from your list? This will allow someone else to claim it for themselves';
 		},
-		
 		actions :
 			<?php echo json_encode($actions); ?>
 									,
@@ -266,7 +288,7 @@ $actions['deleteAction'] = $deleteAction."?table=shop";
 			},
 			description : {
 				title : 'Description',
-				width : '40%',
+				width : '45%',
 				type : 'textarea'
 			},
 			value : {
@@ -342,7 +364,7 @@ $actions['listAction'] = $listAction."?table=thank";
 			},
 			emailButton: {
                     title: '',
-                    width: '50px',
+                    width: '5%',
                     sorting: false,
                     edit: false,
                     create: false,
@@ -351,7 +373,7 @@ $actions['listAction'] = $listAction."?table=thank";
                },
             thanked : {
             	title: '',
-            	width: '50px',
+            	width: '5%',
             	sorting : false,
             	edit: false,
             	create: false,
