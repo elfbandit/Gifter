@@ -11,6 +11,7 @@ if(strlen($description) >=255){
 }
 $exchangeId = mysql_real_escape_string($_GET["exchangeId"]);
 
+if($exchangeId != null){
 //Select all users that are associated with this user's active exchanges
 $result = query("SELECT CONCAT(firstName,' ',lastName) as label, CONCAT(firstName,' ',lastName) as value,userId,firstName,lastName,email 
 						FROM user
@@ -22,6 +23,24 @@ $result = query("SELECT CONCAT(firstName,' ',lastName) as label, CONCAT(firstNam
 							WHERE exchangeId=".$exchangeId."
 							)
 						");
+}else{
+	$result = query("SELECT CONCAT(firstName,' ',lastName) as label, CONCAT(firstName,' ',lastName) as value,userId,firstName,lastName,email 
+						FROM user
+						WHERE (firstName like('".$term."%')
+						OR lastName like('".$term."%'))
+						AND userId IN(
+							SELECT userId
+							FROM exchangeUser
+							WHERE exchangeId IN(
+								SELECT exchangeId
+								FROM exchangeUser
+								WHERE userId=".$_SESSION['userInfo']['userId']."
+								AND permission > 0
+							)
+						)
+					");
+}
+
  
 //Add all records to an array
 $rows = array();

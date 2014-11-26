@@ -15,37 +15,6 @@ function userList(exchangeId){
 		}
 	});
 }
-/* Example Sub-menu entry:
-	<a href="#">The Psychohistorians</a>
-												<ul class="right-submenu"data-offcanvas>
-													<li class="back">
-														<a href="#">Back</a>
-													</li>
-													<li>
-														<label>Level 1</label>
-													</li>
-													<li>
-														<a href="#">Link 1</a>
-													</li>
-													<li class="has-submenu">
-														<a href="#">Link 2 w/ submenu</a>
-														<ul class="left-submenu">
-															<li class="back">
-																<a href="#">Back</a>
-															</li>
-															<li>
-																<label>Level 2</label>
-															</li>
-															<li>
-																<a href="#">...</a>
-															</li>
-														</ul>
-													</li>
-													<li>
-														<a href="#">...</a>
-													</li>
-												</ul>
-*/
 
 var menuLoad = function() {
 	$.ajax({
@@ -74,9 +43,51 @@ var menuLoad = function() {
 	});
 };
 
+var bindMemberSearch= function(exchangeId){
+    function split( val ) {
+      return val.split( /,\s*/ );
+   };
+    function extractLast( term ) {
+      return split( term ).pop();
+    };
+ 
+    $( "#membersearch" )
+      .autocomplete({
+        source: function( request, response ) {
+          $.getJSON( "/Gifter/php/userSearch.php", {
+            term: extractLast( request.term ),
+            exchangeId: exchangeId
+          }, response );
+        },
+        search: function() {
+          // custom minLength
+          var term = extractLast( this.value );
+          if ( term.length < 0 ) {
+            return false;
+          }
+        },
+        focus: function() {
+          // prevent value inserted on focus
+          return false;
+        },
+        select: function( event, ui ) {
+          window.location.href = "main.php?context=" + ui.item.userId;
+          return true;
+        },
+        close : function (event, ui) {
+         val = $("#usersearch").val();
+         $("#usersearch").autocomplete( "search", val ); //keep autocomplete open by 
+         //searching the same input again
+         $("#input").focus();
+        return false;  
+    }
+  });
+};
+
 $(document).ready(function() {
 	//call the function initially on pageLoad
 	menuLoad();
+	bindMemberSearch();
 });
 
 //<li><a href="#">Dropdown Option</a></li>
