@@ -1,62 +1,72 @@
-<div class="row">
-	<div class="small-12 columns">
+<div class="off-canvas-wrap">
+  <div class="inner-wrap">
 
 		<!-- Navigation -->
 
-		<div class="row">
-			<div class="small-12 columns">
+				<nav class="tab-bar">
+					<section class = "middle tab-bar-section">
+						<h1 class = "title"><a id="headerMessage" href="main.php"></a></h1>
+					</section>
 
-				<nav class="top-bar">
-					<ul class="title-area">
-						<!-- Title Area -->
-						<li class="name">
-							<h1><a id="headerMessage" href="main.php"></a></h1>
-							<img src="img/help.png" href="#" title="help" id="mainHelp" height="40px" width="40px"/>
-						</li>
-						<li class="toggle-topbar menu-icon">
-							<a href="#"><span>menu</span></a>
-						</li>
-					</ul>
-
-					<section class="top-bar-section">
+					<section class="right-small">
 						<!-- Right Nav Section -->
-						<ul class="right">
+						<!--<ul class="right">
 							<li class="divider"></li>
-							<li>
-								<a href="main.php" id="myList">My List</a>
-							</li>
+							
 							<li class="divider"></li>
-							<li class="has-dropdown" id="menu">
-								<a>Menu</a>
-								<ul class="dropdown" >
-									<li>
-										<a href="main.php?logout=1">Logout</a>
-									</li>
-									<li>
-										<a id="exchangeMenuButton" href="#" data-reveal-id="exchangeModal">Exchanges</a>
-									</li>
-									<li>
-										<a id="menuHelp" href="#">Help</a>
-									</li>
-								</ul>
-								
-							</li>
-							<li class="divider"></li>
-							<li class="has-dropdown" id="userList">
-								<a>Your Exchanges</a>
-								<ul class="dropdown" >
-									<!-- menuLoad.js will load these options -->
-								</ul>
-							</li>
 						</ul>
+						<!-- This is the button to start the off-canvas -->
+       						<a class="right-off-canvas-toggle menu-icon" ><span></span></a>
 					</section>
 				</nav>
+				
+				
 				<!-- End Top Bar -->
-			</div>
-		</div>
+
+<!-- Start Off-canvas menu -->
+    						
+    	<aside class="right-off-canvas-menu" data-offcanvas>
+     		<ul class="off-canvas-list">
+     			
+     			<li>
+					<a href="main.php" id="myList">My List</a>
+				</li>
+
+				<li class="has-submenu" id="menu">
+						<a>Menu</a>
+							<ul class="right-submenu"data-offcanvas >
+								<li class="back">
+									<a href="#">Back</a>
+								</li>
+								<li>
+									<a href="main.php?logout=1">Logout</a>
+								</li>
+								<li>
+									<a id="exchangeMenuButton" href="#" data-reveal-id="exchangeModal">Exchanges</a>
+								</li>
+								<li>
+									<a id="menuHelp" href="#">Help</a>
+								</li>
+							</ul>
+								
+						</li>
+						<li>
+							<label>Your Exchanges</label>
+						</li>
+											
+						<section id="userList">
+								<!-- menuLoad.js will load these options id="userList"-->	
+												
+						</section>
+					</aside>
+
+    						
+    						<!-- End off-canvas Menu -->
 
 		<!-- End Navigation -->
 
+
+		<section class="main-section">
 		<div class="row">
 
 			<!--gift table -->
@@ -67,35 +77,31 @@
 
 		<!--<div class="large-10 small-6 columns">-->
 
-		<div class="row">
+		<dl class="tabs" data-tab>
+			<dd class="active"><a href="#shoppingList">Shopping List</a></dd>
+  			<dd><a href="#thankYouList">Thank You List</a></dd>
+		</dl>
 
-			<div class="section-container auto" data-section>
-				<section class="active">
-					<p class="title" data-section-title>
-						<a href="#panel1">Shopping List</a>
-					</p>
-					<div class="content" data-section-content>
-						<div class="row">
-							<div class= "small-11 small-centered columns" id="shoppingTableContainer"></div>
-						</div>
+			<div class="tabs-content" data-section>
+				<div class="content active" id="shoppingList" data-section-content>
+					<div class="row">
+						<div class= "small-12 small-centered columns" id="shoppingTableContainer"></div>
 					</div>
-				</section>
-				<section>
-					<p class="title" data-section-title>
-						<a href="#panel2">Thank You List</a>
-					</p>
-					<div class="content" data-section-content>
-							<div class="row">
-								<div class= "small-12 small-centered columns" id="ThankYouTableContainer"></div>
-						</div>
+				</div>
+				<div class="content" id="thankYouList" data-section-content>
+					<div class="row">
+						<div class= "small-12 small-centered columns" id="ThankYouTableContainer"></div>
 					</div>
-				</section>
+				</div>
 			</div>
 
-		</div>
-
 		<!-- End Shopping List -->
-	</div>
+
+</section>
+
+  <a class="exit-off-canvas"></a>
+
+</div>
 </div>
 
 <!-- joyride walkthrough -->

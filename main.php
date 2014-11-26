@@ -10,9 +10,9 @@
         <link rel="stylesheet" href="css/foundation.css">
         <link rel="stylesheet" href="js/jquery-ui/css/ui-lightness/jquery-ui-1.10.3.custom.min.css" />
         <link rel="stylesheet" type="text/css" href="js/jtable/themes/metro/blue/jtable.min.css" />
-        <script src="js/vendor/custom.modernizr.js"></script>
         <script src="js/jquery-1.10.2.min.js"></script>
         <script src="js/jquery-ui/js/jquery-ui-1.10.3.custom.min.js"></script>
+		<script src="js/vendor/modernizr.js"></script>
         <title>Gifter exchange</title>
     </head>
     <body>
@@ -70,6 +70,7 @@
   <script src="js/foundation.min.js"></script>
   <script src="js/foundation/foundation.joyride.js"></script>
   <script src="js/foundation/foundation.cookie.js"></script>
+  <script src="js/foundation/foundation.offcanvas.js"></script>
 
 <script>
   //<!--initialize foundation library -->
