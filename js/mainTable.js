@@ -24,7 +24,7 @@ $(document).ready(function() {
 				title : 'Estimated Value',
 				width : '10%',
 				type : 'date',
-			}
+			},
 			Gifter : {
 				title : 'Age',
 				width : '20%',

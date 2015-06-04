@@ -73,14 +73,7 @@ var bindMemberSearch= function(exchangeId){
         select: function( event, ui ) {
           window.location.href = "main.php?context=" + ui.item.userId;
           return true;
-        },
-        close : function (event, ui) {
-         val = $("#usersearch").val();
-         $("#usersearch").autocomplete( "search", val ); //keep autocomplete open by 
-         //searching the same input again
-         $("#input").focus();
-        return false;  
-    }
+        }
   });
 };
 
