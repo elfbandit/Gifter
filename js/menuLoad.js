@@ -1,7 +1,7 @@
 function userList(exchangeId){
 	$.ajax({
 		type : "POST",
-		url : "/Gifter/php/userList.php",
+		url : "/php/userList.php",
 		data : "exchangeId=" + exchangeId,
 		success : function(result) {
 			var results = JSON.parse(result);
@@ -10,7 +10,7 @@ function userList(exchangeId){
 			
 			userListNode.append('<li class="back"><a href="#">Back</a></li>'); //Add the "Back" option to the menu
 			for (var i = 0; i < results.records.length; i++) {
-				userListNode.append('<li><a href="main.php?context=' + results.records[i].userId + '">' + results.records[i].firstName + '\'s wishlist</a></li>');
+				userListNode.append('<li><a href="index.php?context=' + results.records[i].userId + '">' + results.records[i].firstName + '\'s wishlist</a></li>');
 			}
 		}
 	});
@@ -19,7 +19,7 @@ function userList(exchangeId){
 var menuLoad = function() {
 	$.ajax({
 		type : "POST",
-		url : "/Gifter/php/exchangeList.php",
+		url : "/php/exchangeList.php",
 		success : function(result) {
 			var results = JSON.parse(result);
 			$("#userList").empty();
@@ -54,7 +54,7 @@ var bindMemberSearch= function(exchangeId){
     $( "#membersearch" )
       .autocomplete({
         source: function( request, response ) {
-          $.getJSON( "/Gifter/php/userSearch.php", {
+          $.getJSON( "/php/userSearch.php", {
             term: extractLast( request.term ),
             exchangeId: exchangeId
           }, response );
@@ -71,7 +71,7 @@ var bindMemberSearch= function(exchangeId){
           return false;
         },
         select: function( event, ui ) {
-          window.location.href = "main.php?context=" + ui.item.userId;
+          window.location.href = "index.php?context=" + ui.item.userId;
           return true;
         }
   });

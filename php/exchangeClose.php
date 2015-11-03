@@ -55,7 +55,7 @@ if (ISSET($_POST['exchangeId'])) {
 			$message = "<html><body>
 						Hello from Gifter! <br/> 
 						We just wanted to let you know that ".$exchangeName." is now closed and all gifts have been marked as gifted.
-						You can now take a look at your thank-you list to remember what you got. Check it out <a href = 'http://gifter.site.nfoservers.com/Gifter/main.php'>here</a> <br/>
+						You can now take a look at your thank-you list to remember what you got. Check it out <a href = 'mygifter.net'>here</a> <br/>
 						<br />
 						Thanks!</br>
 						".$exchangeAdmin['firstName']."

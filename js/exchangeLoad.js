@@ -18,7 +18,7 @@ var moderatorModalLoad = function(exchangeId, exchangeName, permission) {
 
 	//Load the table
 	$.ajax({
-		url : '/Gifter/php/moderatorList.php',
+		url : '/php/moderatorList.php',
 		type : "POST",
 		data : "exchangeId=" + exchangeId,
 		success : function(result) {
@@ -88,7 +88,7 @@ var attachModeratorClickFunctions = function() {
 
 var moderatorAction = function(action, userId) {
 	$.ajax({
-		url : '/Gifter/php/moderatorAction.php',
+		url : '/php/moderatorAction.php',
 		type : "POST",
 		data : "exchangeId=" + context["exchangeId"] + "&action=" + action + "&userId=" + userId,
 		success : function(result) {
@@ -105,7 +105,7 @@ var exchangeRemoveAjax = function(exchangeId) {
 	$.ajax({
 		type : "POST",
 		data : "exchangeId=" + exchangeId,
-		url : "/Gifter/php/exchangeToggle.php",
+		url : "/php/exchangeToggle.php",
 		success : function(result) {//Soft reload all the tables
 			menuLoad();
 			$('#mainTableContainer').jtable("reload");
@@ -119,7 +119,7 @@ var exchangeClose = function(exchangeId) {
 	$.ajax({
 		type : "POST",
 		data : "exchangeId=" + exchangeId,
-		url : "/Gifter/php/exchangeClose.php",
+		url : "/php/exchangeClose.php",
 		success : function(result) {//Soft reload all the tables
 			menuLoad();
 			refreshTables();
@@ -135,7 +135,7 @@ function addExchange(e) {
 	$.ajax({
 		type : "POST",
 		data : "exchangeName=" + $("#exchange-name-input").val(),
-		url : "/Gifter/php/exchangeAdd.php",
+		url : "/php/exchangeAdd.php",
 		success : function(result) {//Soft reload relevant tables
 			exchangeLoad();
 			$("#exchangeModal").foundation("reveal", "open");
@@ -167,7 +167,7 @@ var bindUserSearch= function(exchangeId){
       })
       .autocomplete({
         source: function( request, response ) {
-          $.getJSON( "/Gifter/php/userSearch.php", {
+          $.getJSON( "/php/userSearch.php", {
             term: extractLast( request.term ),
             exchangeId: exchangeId
           }, response );
@@ -208,7 +208,7 @@ var exchangeLoad = function() {
 	//Load the tables
 	$.ajax({
 		type : "POST",
-		url : "/Gifter/php/exchangeList.php",
+		url : "/php/exchangeList.php",
 		success : function(result) {
 			var results = JSON.parse(result);
 			$("#exchange-content").find("tbody").empty();
@@ -221,7 +221,7 @@ var exchangeLoad = function() {
 						$.ajax({
 							type : "POST",
 							data : "exchangeId=" + $(this).data("exchangeId"),
-							url : "/Gifter/php/exchangeToggle.php",
+							url : "/php/exchangeToggle.php",
 							success : function(result) {
 								menuLoad();
 								$("#exchange-add-Modal").foundation("reveal", "open");

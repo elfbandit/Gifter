@@ -2,10 +2,10 @@ $(document).ready(function() {
 	$('#mainTableContainer').jtable({
 		title : 'Table of people',
 		actions : {
-			listAction : '/gifter/php/personList.php',
-			createAction : '/gifter/php/createAction.php',
-			updateAction : '/gifter/php/updateAction.php',
-			deleteAction : '/gifter/php/deleteAction.php'
+			listAction : '/php/personList.php',
+			createAction : '/php/createAction.php',
+			updateAction : '/php/updateAction.php',
+			deleteAction : '/php/deleteAction.php'
 		},
 		fields : {
 			giftId : {

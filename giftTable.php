@@ -37,8 +37,8 @@ var commentTable = function (giftData) {
                                     {
                                         title: giftData.record.name + ' - Comments',
                                         actions: {
-                                            listAction: '/Gifter/php/comment.php?action=list&giftId='+giftData.record.giftId,
-                                            createAction: '/Gifter/php/comment.php?action=create&giftId='+giftData.record.giftId
+                                            listAction: '/php/comment.php?action=list&giftId='+giftData.record.giftId,
+                                            createAction: '/php/comment.php?action=create&giftId='+giftData.record.giftId
                                         },
                                         fields: {
                                             userId: {
