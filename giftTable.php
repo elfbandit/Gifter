@@ -1,9 +1,9 @@
 <?php
 	//list out the various table options. Update these base options if the calls are ever changed
-	$createAction = $server_path."/Gifter/php/createAction.php";
-	$updateAction = $server_path."/Gifter/php/updateAction.php";
-	$deleteAction = $server_path."/Gifter/php/deleteAction.php";
-	$listAction = $server_path."/Gifter/php/listAction.php";
+	$createAction = $server_path."/php/createAction.php";
+	$updateAction = $server_path."/php/updateAction.php";
+	$deleteAction = $server_path."/php/deleteAction.php";
+	$listAction = $server_path."/php/listAction.php";
 	$actions = array();
 	
 	//If the user viewing the table is not the owner, then disable the create, delete, and update options

@@ -5,7 +5,7 @@
 		<?php if(isset($_POST['create'])){ //if user is creating a new account, ask for the name to complete registration
 		?>
 		<h3>Almost there! Just need to know who you are!</h3>
-		<form method="post" action="main.php?tour=1" >
+		<form method="post" action="index.php?tour=1" >
 			First Name :
 			<input type="text" name="firstName" required placeholder="First"/>
 			<br />
@@ -21,7 +21,7 @@
 
 			<h3>Either log in, or create an account:</h3>
 			<br />
-			<form method="post" action="main.php" >
+			<form method="post" action="index.php" >
 
 				<p>
 					email :
