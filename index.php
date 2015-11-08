@@ -74,11 +74,21 @@
 
 <script>
   //<!--initialize foundation library -->
-  $(document).ready(function ($) {
-  	$(document).foundation();
-  	$('#headerMessage').text('Welcome '+userInfo.firstName);
-  });
-  
+
+	$(document).ready(function($) {
+		$(document).foundation({
+			offcanvas : {
+				// Sets method in which offcanvas opens.
+				// [ move | overlap_single | overlap ]
+				open_method : 'move',
+				// Should the menu close when a menu link is clicked?
+				// [ true | false ]
+				close_on_click : true
+			}
+		});
+		$('#headerMessage').text('Welcome ' + userInfo.firstName);
+	});
+
 </script>
 <?php //put things here that should run after login
 	if (isset($_SESSION['userInfo'])) {//include logged-in js info

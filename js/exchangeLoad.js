@@ -149,7 +149,7 @@ function addExchange(e) {
 	return false;
 }
 
-var bindUserSearch= function(exchangeId){
+var bindUserSearch= function(exchangeId, location){
     function split( val ) {
       return val.split( /,\s*/ );
    };
@@ -168,6 +168,7 @@ var bindUserSearch= function(exchangeId){
       .autocomplete({
         source: function( request, response ) {
           $.getJSON( "/php/userSearch.php", {
+          	appendTo : location,
             term: extractLast( request.term ),
             exchangeId: exchangeId
           }, response );
@@ -186,7 +187,12 @@ var bindUserSearch= function(exchangeId){
         select: function( event, ui ) {
           moderatorAction("add",ui.item.userId);
           menuLoad();
-          return false;
+          			return false;
+        },
+        open: function(){
+       	 setTimeout(function () {
+            $('.ui-autocomplete').css('z-index', 99999999999999);
+       	 }, 0);
         },
         close : function (event, ui) {
          val = $("#usersearch").val();
@@ -254,7 +260,7 @@ var exchangeLoad = function() {
 					moderateButton.click(function() {
 						// populate the modal table
 						moderatorModalLoad($(this).data("exchangeId"), $(this).data("exchangeName"), $(this).data("permission"));
-						bindUserSearch($(this).data("exchangeId"));
+						bindUserSearch($(this).data("exchangeId"), "#usersearch");
 					});
 					moderateButton.data("exchangeId", results.records[i].exchangeId);
 					moderateButton.data("exchangeName", results.records[i].exchangeName);
