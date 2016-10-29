@@ -63,7 +63,7 @@ if (isset($_SESSION['userInfo'])) {// only set the context if user is logged in
 
 function set_context($contextId) {
 	if (is_numeric($contextId) AND isset($contextId)) {
-		$answer_query = mysql_query('SELECT email,userId,firstName,lastName FROM user WHERE userId=\'' . $contextId . '\' LIMIT 0, 1');
+		$answer_query = query('SELECT email,userId,firstName,lastName FROM user WHERE userId=\'' . $contextId . '\' LIMIT 0, 1');
 		if (mysql_errno()) {
 			echo mysql_error();
 		} else {
