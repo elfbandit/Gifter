@@ -49,7 +49,7 @@
 			<form method="post" action="index.php" >
 
 				<p>
-					Password :
+					Email :
 					<input type="email" name="resetemail" required placeholder="myemail@somewhere.com"/>
 					<input type="submit" name="reset" value="Send my password" />
 				</p>
