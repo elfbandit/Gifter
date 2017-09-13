@@ -1,5 +1,6 @@
 <?php
 //$con=mysql_connect("127.0.0.1","gifterUser","","gifter");
+include_once('./mysql.php');
 $con = mysql_connect("localhost", "shiden", "DCNUSgdSWy");
 $con . mysql_select_db("shiden_gifter");
 $server_path = "";
