@@ -7,7 +7,7 @@ if (ISSET($_POST['exchangeId'])) {
 
 	//Make sure this user has permission to close the exchange
 	$result = query("SELECT permission FROM exchangeUser WHERE userId=".$_SESSION['userInfo']['userId']);
-	if(mysql_fetch_object($result)->permission < 3){
+	if(mysqli_fetch_object($result)->permission < 3){
 		print_error("You do not have permission to close this exchange");
 		return;
 	}
@@ -19,7 +19,7 @@ if (ISSET($_POST['exchangeId'])) {
 						AND e.exchangeId =".$exchangeId);
 
 		$exchangeName = query("select exchangeName from exchange where exchangeId =".$exchangeId)->exchangeName;
-		$exchangeAdmin = mysql_fetch_assoc(query("select u.* from user u, exchangeUser e 
+		$exchangeAdmin = mysqli_fetch_assoc(query("select u.* from user u, exchangeUser e 
 												  WHERE u.userId = e.userId 
 												  AND e.exchangeId =".$exchangeId."
 												  AND e.permission = 3"));
@@ -27,8 +27,8 @@ if (ISSET($_POST['exchangeId'])) {
 	//Add all records to an array
 		$userIds = array();
 		$userEmails = array();
-		if(mysql_num_rows($userList) > 0){
-			while($row = mysql_fetch_array($userList))
+		if(mysqli_num_rows($userList) > 0){
+			while($row = mysqli_fetch_array($userList))
 			{
     			$userIds[] = $row["userId"];
 				$userEmails[] = $row["email"];
@@ -39,14 +39,14 @@ if (ISSET($_POST['exchangeId'])) {
 		query("UPDATE gifts set gifted = true 
 				WHERE userId IN(". implode(",", $userIds).")
 				AND gifterId IN(". implode(",", $userIds).")");
-		if(mysql_errno() != 0){
+		if(mysqli_errno() != 0){
 			print_error("Could not close exchange");
 			return;
 		}
 		
 	//Soft-delete the exchange
 		query("UPDATE exchange SET active=FALSE WHERE exchangeId='" . $exchangeId . "'");
-		if(mysql_errno() != 0){
+		if(mysqli_errno() != 0){
 			print_error("Could not close exchange");
 		}else{
 			//Send an email to all affected users

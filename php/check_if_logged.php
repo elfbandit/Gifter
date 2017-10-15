@@ -1,5 +1,5 @@
 <?php
-include ("dbConnect.php");
+include_once ("dbConnect.php");
 session_start();
 
 if (isset($_GET['logout'])) {
@@ -18,29 +18,29 @@ if (isset($_POST['email']) AND isset($_POST['password'])) {
 		if (isset($_POST['login'])) {
 			//attempt to log in the user
 			//Prevent sql or html to be executed in db or page.
-			$usr_good = mysql_real_escape_string(htmlspecialchars($_POST['email']));
-			$psw_good = mysql_real_escape_string(md5($_POST['password']));
-			$answer_query = mysql_query('SELECT email,userId,firstName,lastName,password FROM user WHERE email=\'' . $usr_good . '\' LIMIT 0, 1');
-			$stored_info = mysql_fetch_assoc($answer_query);
-			$stored_psw = mysql_real_escape_string(htmlspecialchars($stored_info['password']));
+			$usr_good = $mysqli->real_escape_string(htmlspecialchars($_POST['email']));
+			$psw_good = $mysqli->real_escape_string(md5($_POST['password']));
+			$answer_query = query('SELECT email,userId,firstName,lastName,password FROM user WHERE email=\'' . $usr_good . '\' LIMIT 0, 1');
+			$stored_info = $answer_query->fetch_assoc();
+			$stored_psw = $mysqli->real_escape_string(htmlspecialchars($stored_info['password']));
 
 			if ($psw_good == $stored_psw) {
 				$_SESSION['userInfo'] = $stored_info;
 			}
 		} else if (isset($_POST['create']) AND isset($_POST['firstName']) AND isset($_POST['lastName'])) {
-			$usr_good = mysql_real_escape_string(htmlspecialchars($_POST['email']));
-			$first_good = mysql_real_escape_string(htmlspecialchars($_POST['firstName']));
-			$last_good = mysql_real_escape_string(htmlspecialchars($_POST['lastName']));
-			$psw_good = mysql_real_escape_string(md5($_POST['password']));
+			$usr_good = $mysqli->real_escape_string(htmlspecialchars($_POST['email']));
+			$first_good = $mysqli->real_escape_string(htmlspecialchars($_POST['firstName']));
+			$last_good = $mysqli->real_escape_string(htmlspecialchars($_POST['lastName']));
+			$psw_good = $mysqli->real_escape_string(md5($_POST['password']));
 			$query = "INSERT INTO user(email,password,firstName,lastName) values('" . $usr_good . "','". $psw_good ."','" . $first_good . "','" . $last_good . "') ";
-			$create_query = mysql_query($query);
+			$create_query = query($query);
 
-			if (mysql_errno()) {
-				echo mysql_error();
+			if (mysqli_errno()) {
+				echo mysqli_error();
 			} else {
 
-				$answer_query = mysql_query('SELECT email,userId,firstName,lastName,password FROM user WHERE email=\'' . $usr_good . '\' LIMIT 0, 1');
-				$stored_info = mysql_fetch_assoc($answer_query);
+				$answer_query = query('SELECT email,userId,firstName,lastName,password FROM user WHERE email=\'' . $usr_good . '\' LIMIT 0, 1');
+				$stored_info = mysqli_fetch_assoc($answer_query);
 				$stored_psw = $stored_info['password'];
 
 				if ($psw_good == $stored_psw) {
@@ -64,10 +64,10 @@ if (isset($_SESSION['userInfo'])) {// only set the context if user is logged in
 function set_context($contextId) {
 	if (is_numeric($contextId) AND isset($contextId)) {
 		$answer_query = query('SELECT email,userId,firstName,lastName FROM user WHERE userId=\'' . $contextId . '\' LIMIT 0, 1');
-		if (mysql_errno()) {
-			echo mysql_error();
+		if (mysqli_errno()) {
+			echo mysqli_error();
 		} else {
-			$context = mysql_fetch_assoc($answer_query);
+			$context = mysqli_fetch_assoc($answer_query);
 			$_SESSION['context'] = $context;
 		}
 	}

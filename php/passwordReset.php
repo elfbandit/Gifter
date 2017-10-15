@@ -11,19 +11,19 @@ session_start();
 
 //See if we need to do something
 if (isset($_POST['resetemail'])) {//need email to be passed in request
-	$email = mysql_real_escape_string($_POST["resetemail"]);
+	$email = mysqli_real_escape_string($_POST["resetemail"]);
 	$query = "SELECT password FROM user WHERE email='" . $email . "'";
 	$result = query($query);
 
 	//check result
-	if (mysql_num_rows($result) > 0) {
-		$row = mysql_fetch_array($result);
+	if (mysqli_num_rows($result) > 0) {
+		$row = mysqli_fetch_array($result);
 		$new_password = md5($row[0]);
 
 		//save the new password to the DB
 		$query = "UPDATE user SET password='" . md5($new_password) . "' WHERE email='" . $email . "'";
 		$result = query($query);
-		if (mysql_info() == false) {//return an error if transaction was unsuccessful
+		if (mysqli_info() == false) {//return an error if transaction was unsuccessful
 			$message = ('Error: was not able to update password. Please check database status.');
 		}
 
@@ -44,15 +44,15 @@ if (isset($_POST['resetemail'])) {//need email to be passed in request
 
 } elseif (isset($_POST['newpassword']) && isset($_POST['hash'])) {//password reset request
 	//check the hash for correctness
-	$hash = mysql_real_escape_string($_POST["hash"]);
+	$hash = mysqli_real_escape_string($_POST["hash"]);
 	$query = "SELECT count(0) FROM user WHERE password='" . md5($hash) . "'";
 	$result = query($query);
 
-	if (mysql_num_rows($result) > 0) {//hash is valid; set the new password
-		$newpassword = mysql_escape_string($_POST['newpassword']);
+	if (mysqli_num_rows($result) > 0) {//hash is valid; set the new password
+		$newpassword = mysqli_escape_string($_POST['newpassword']);
 		$query = "UPDATE user SET password = '" . md5($newpassword) . "' WHERE password = '" . md5($hash) . "'";
 		query($query);
-		if (mysql_info() == false) {//return an error if transaction was unsuccessful
+		if (mysqli_info() == false) {//return an error if transaction was unsuccessful
 			$message = 'Error: was not able to update password. Please check database status.';
 		} else {
 			$message = 'Password reset! Please try logging in below';

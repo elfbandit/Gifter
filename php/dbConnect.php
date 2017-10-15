@@ -1,23 +1,32 @@
 <?php
-//$con=mysql_connect("127.0.0.1","gifterUser","","gifter");
-include_once('./mysql.php');
-$con = mysql_connect("localhost", "shiden", "DCNUSgdSWy");
-$con . mysql_select_db("shiden_gifter");
+if(!defined($mysqli)){
+//$con=mysqli_connect("127.0.0.1","gifterUser","","gifter");
+$mysqli = new mysqli("localhost", "shiden", "DCNUSgdSWy");
+$mysqli->select_db("shiden_gifter");
+}
 $server_path = "";
 
 // Check connection
-if (mysql_errno($con)) {
-	echo "Failed to connect to MySQL: " . mysql_connect_error();
-}
+if ($mysqli->connect_error) {
+    die("Connection failed: " . $mysqli->connect_error);
+} 
 
 //generic query function
 function query($queryString) {
-	$result = mysql_query($queryString);
-	if (mysql_error()) {
-		print_error(mysql_error());
-	}else{
-		return $result;
-	}
+
+if(!defined($mysqli)){
+//$con=mysqli_connect("127.0.0.1","gifterUser","","gifter");
+$mysqli = new mysqli("localhost", "shiden", "DCNUSgdSWy");
+$mysqli->select_db("shiden_gifter");
+}
+
+if ($result = $mysqli->query($queryString) === TRUE) {
+	echo $queryString;
+	echo $result->num_rows;
+return $result;
+} else {
+echo "Error executing query: " . $mysqli->error;
+}
 }
 
 function print_error($errorString) {
@@ -40,6 +49,6 @@ function print_success($message) {
 
 function exchangeActive($exchangeId){
 	$result = query("SELECT active FROM exchange WHERE exchangeId=".$exchangeId);
-	return mysql_fetch_object($result)->active;
+	return mysqli_fetch_object($result)->active;
 }
 ?>

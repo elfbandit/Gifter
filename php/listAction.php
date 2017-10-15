@@ -4,7 +4,7 @@ session_start();
 
 $jTableResult = array();
 
-if(mysql_errno($con)){
+if(mysqli_errno($con)){
 	$jTableResult['Result'] = "FAIL";
 }else{
 	$jTableResult['Result'] = "OK";
@@ -22,15 +22,15 @@ if(isset($_GET['table']) AND $_GET['table'] == "shop"){ //requesting the shoppin
 
 	$query = "SELECT giftId,name,link,description,value,gifterId FROM gifts LEFT OUTER JOIN user ON gifts.gifterId = user.userId WHERE gifts.userId='".$_SESSION['context']['userId']."' and gifted=FALSE";
 }
-$result = mysql_query($query);
-if(mysql_error()){
-	echo mysql_error();
+$result = query($query);
+if(mysqli_error()){
+	echo mysqli_error();
 }
 
 //Add all records to an array
 $rows = array();
-if(mysql_num_rows($result) > 0){
-	while($row = mysql_fetch_array($result))
+if(mysqli_num_rows($result) > 0){
+	while($row = mysqli_fetch_array($result))
 	{
     	$rows[] = $row;
 	}

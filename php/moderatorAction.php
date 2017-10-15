@@ -3,8 +3,8 @@ include 'dbConnect.php';
 session_start();
 
 $jTableResult = array();
-$userId = mysql_real_escape_string($_POST['userId']);
-$exchangeId = mysql_real_escape_string($_POST['exchangeId']);
+$userId = mysqli_real_escape_string($_POST['userId']);
+$exchangeId = mysqli_real_escape_string($_POST['exchangeId']);
 
 //Make sure the exchange is still open
 if (exchangeActive($exchangeId) == FALSE) {
@@ -15,7 +15,7 @@ if (exchangeActive($exchangeId) == FALSE) {
 //Make sure the accessing user has moderator prmissions on the exchange
 // 0=applicant, 1=participant, 2=moderator, 3=admin
 $result = query("SELECT permission FROM exchangeUser WHERE userId=" . $_SESSION['userInfo']['userId'] . " AND exchangeId=" . $exchangeId . " AND permission > 1");
-if (mysql_num_rows($result) == 0) {
+if (mysqli_num_rows($result) == 0) {
 	echo "You do not have permission to moderate this exchange";
 	return;
 } else if (!isset($_POST['action']) || !isset($_POST['userId']) || !isset($exchangeId)) {
@@ -23,7 +23,7 @@ if (mysql_num_rows($result) == 0) {
 	return;
 }
 
-$permission =  mysql_fetch_object($result) -> permission;
+$permission =  mysqli_fetch_object($result) -> permission;
 
 switch ($_POST['action']) {
 	case 'add' :
@@ -65,7 +65,7 @@ switch ($_POST['action']) {
 			AND gifts.gifted = FALSE");
 
 		$giftList = "";
-		while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
+		while ($row = mysqli_fetch_array($result, mysqli_ASSOC)) {
 			$giftList .= $row['giftId'] . ",";
 		}
 
@@ -86,7 +86,7 @@ switch ($_POST['action']) {
 
 //Add all records to an array
 $rows = array();
-while ($row = mysql_fetch_array($result)) {
+while ($row = mysqli_fetch_array($result)) {
 	$rows[] = $row;
 }
 

@@ -8,8 +8,8 @@ function commentList(&$jTableResult) {
 	$result = query("SELECT comments.userId,giftId,commentId,comment,CONCAT_WS(' ',firstName,lastName) as name, time FROM comments join user on comments.userId=user.userId where giftId=" . $_GET['giftId']);
 	$jTableResult['Result'] = "OK";
 	$rows = array();
-	if (mysql_num_rows($result) > 0) {
-		while ($row = mysql_fetch_array($result)) {
+	if (mysqli_num_rows($result) > 0) {
+		while ($row = mysqli_fetch_array($result)) {
 			$rows[] = $row;
 		}
 	}
@@ -17,7 +17,7 @@ function commentList(&$jTableResult) {
 }
 
 function commentCreate(&$jTableResult) {
-	$comment = mysql_real_escape_string($_POST["comment"]);
+	$comment = mysqli_real_escape_string($_POST["comment"]);
 	if (strlen($comment) > 255) {
 		$jTableResult['Message'] = "Your description is too long!";
 		$jTableResult['Result'] = "ERROR";
@@ -30,7 +30,7 @@ function commentCreate(&$jTableResult) {
 	//Get last inserted record (to return to jTable)
 	$result = query("SELECT comments.userId,giftId,commentId,comment,CONCAT_WS(' ',firstName,lastName) as name, time FROM comments join user on comments.userId=user.userId WHERE commentId = LAST_INSERT_ID()");
 	$jTableResult['Result'] = "OK";
-	$jTableResult['Record'] = mysql_fetch_array($result);
+	$jTableResult['Record'] = mysqli_fetch_array($result);
 }
 
 function commentDelete(&$jTableResult){

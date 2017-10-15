@@ -2,14 +2,14 @@
 include 'dbConnect.php';
 session_start();
 
-$term = mysql_real_escape_string($_GET["term"]);
+$term = mysqli_real_escape_string($_GET["term"]);
 if(strlen($description) >=255){
 	$jTableResult['Message'] = "Your search term is too long!";
 	$jTableResult['Result'] = "ERROR";
 	print json_encode($jTableResult);
 	return;
 }
-$exchangeId = mysql_real_escape_string($_GET["exchangeId"]);
+$exchangeId = mysqli_real_escape_string($_GET["exchangeId"]);
 
 if($exchangeId != null){
 //Select all users that are associated with this user's active exchanges
@@ -44,7 +44,7 @@ $result = query("SELECT CONCAT(firstName,' ',lastName) as label, CONCAT(firstNam
  
 //Add all records to an array
 $rows = array();
-while($row = mysql_fetch_array($result))
+while($row = mysqli_fetch_array($result))
 {
     $rows[] = $row;
 }

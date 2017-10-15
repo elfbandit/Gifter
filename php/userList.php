@@ -3,7 +3,7 @@ include 'dbConnect.php';
 session_start();
 
 $jTableResult = array();
-$exchangeId = mysql_real_escape_string($_POST["exchangeId"]);
+$exchangeId = mysqli_real_escape_string($_POST["exchangeId"]);
 
 if(isset($_POST["exchangeId"])){
 	$result = query("SELECT userId,firstName,lastName,email 
@@ -38,7 +38,7 @@ $result = query("SELECT userId,firstName,lastName,email
  
 //Add all records to an array
 $rows = array();
-while($row = mysql_fetch_array($result))
+while($row = mysqli_fetch_array($result))
 {
     $rows[] = $row;
 }

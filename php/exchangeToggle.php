@@ -10,7 +10,7 @@ if (ISSET($_POST['exchangeId'])) {
 	$result = query("SELECT * FROM exchangeUser WHERE userId='" . $_SESSION['userInfo']['userId'] . "' and exchangeId='" . $_POST['exchangeId'] . "'");
 
 	$queries = array();
-	if (mysql_num_rows($result) == 0) {//add
+	if (mysqli_num_rows($result) == 0) {//add
 		$queries[0] = "INSERT INTO exchangeUser(exchangeId,userId) VALUES ('" . $_POST['exchangeId'] . "','" . $_SESSION['userInfo']['userId'] . "')";
 	} else {//delete
 		$queries[0] = "DELETE FROM exchangeUser WHERE exchangeId='" . $_POST['exchangeId'] . "' and userId='" . $_SESSION['userInfo']['userId'] . "'";
