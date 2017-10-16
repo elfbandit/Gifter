@@ -3,7 +3,7 @@ include 'dbConnect.php';
 session_start();
 
 $jTableResult = array();
-$exchangeId = mysqli_real_escape_string($_POST["exchangeId"]);
+$exchangeId = mysqli_real_escape_string($mysqli,$_POST["exchangeId"]);
 
 if(isset($_POST["exchangeId"])){
 	$result = query("SELECT userId,firstName,lastName,email 

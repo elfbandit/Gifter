@@ -3,11 +3,11 @@ include 'dbConnect.php';
 session_start();
 
 if (ISSET($_POST['exchangeName'])) {
-	$exchangeName = mysqli_real_escape_string($_POST["exchangeName"]);
+	$exchangeName = mysqli_real_escape_string($mysqli,$_POST["exchangeName"]);
 
 	//Ensure there are no duplicates
 	$result = query("SELECT * FROM exchange WHERE exchangeName LIKE('" . $exchangeName."')");
-	if (mysqli_num_rows($result) > 0 || mysqli_errno()) {
+	if (mysqli_num_rows($result) > 0 || mysqli_errno($mysqli)) {
 		print_error("An exchange by that name already exists");
 		return;
 	}

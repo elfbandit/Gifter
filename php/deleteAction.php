@@ -13,7 +13,7 @@ if(isset($_GET['table']) AND $_GET['table'] == "shop"){ //requesting the shoppin
 	$result = query("DELETE FROM gifts WHERE giftId = " . $_POST["giftId"]." AND userId = ".$_SESSION['userInfo']['userId']);
 }
  
- if (mysqli_errno($con))
+ if (mysqli_errno($mysqli))
   {
   	$jTableResult['Result'] = "ERROR";
   }else{

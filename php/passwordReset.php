@@ -11,7 +11,7 @@ session_start();
 
 //See if we need to do something
 if (isset($_POST['resetemail'])) {//need email to be passed in request
-	$email = mysqli_real_escape_string($_POST["resetemail"]);
+	$email = mysqli_real_escape_string($mysqli,$_POST["resetemail"]);
 	$query = "SELECT password FROM user WHERE email='" . $email . "'";
 	$result = query($query);
 
@@ -23,8 +23,9 @@ if (isset($_POST['resetemail'])) {//need email to be passed in request
 		//save the new password to the DB
 		$query = "UPDATE user SET password='" . md5($new_password) . "' WHERE email='" . $email . "'";
 		$result = query($query);
-		if (mysqli_info() == false) {//return an error if transaction was unsuccessful
+		if ($result == FALSE) {//return an error if transaction was unsuccessful
 			$message = ('Error: was not able to update password. Please check database status.');
+			return;
 		}
 
 		//send email with temporary link
@@ -44,15 +45,15 @@ if (isset($_POST['resetemail'])) {//need email to be passed in request
 
 } elseif (isset($_POST['newpassword']) && isset($_POST['hash'])) {//password reset request
 	//check the hash for correctness
-	$hash = mysqli_real_escape_string($_POST["hash"]);
+	$hash = mysqli_real_escape_string($mysqli,$_POST["hash"]);
 	$query = "SELECT count(0) FROM user WHERE password='" . md5($hash) . "'";
 	$result = query($query);
 
 	if (mysqli_num_rows($result) > 0) {//hash is valid; set the new password
-		$newpassword = mysqli_escape_string($_POST['newpassword']);
-		$query = "UPDATE user SET password = '" . md5($newpassword) . "' WHERE password = '" . md5($hash) . "'";
+		$newpassword = mysqli_escape_string($mysqli,$_POST['newpassword']);
+		$result = "UPDATE user SET password = '" . md5($newpassword) . "' WHERE password = '" . md5($hash) . "'";
 		query($query);
-		if (mysqli_info() == false) {//return an error if transaction was unsuccessful
+		if ($result == false) {//return an error if transaction was unsuccessful
 			$message = 'Error: was not able to update password. Please check database status.';
 		} else {
 			$message = 'Password reset! Please try logging in below';
@@ -60,7 +61,7 @@ if (isset($_POST['resetemail'])) {//need email to be passed in request
 	} else{
 		$message = 'Password reset link is invalid.';
 	}
-
+	return;
 }
 
 ?>

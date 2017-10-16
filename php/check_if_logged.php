@@ -35,7 +35,7 @@ if (isset($_POST['email']) AND isset($_POST['password'])) {
 			$query = "INSERT INTO user(email,password,firstName,lastName) values('" . $usr_good . "','". $psw_good ."','" . $first_good . "','" . $last_good . "') ";
 			$create_query = query($query);
 
-			if (mysqli_errno()) {
+			if (mysqli_errno($mysqli)) {
 				echo mysqli_error();
 			} else {
 
@@ -64,8 +64,8 @@ if (isset($_SESSION['userInfo'])) {// only set the context if user is logged in
 function set_context($contextId) {
 	if (is_numeric($contextId) AND isset($contextId)) {
 		$answer_query = query('SELECT email,userId,firstName,lastName FROM user WHERE userId=\'' . $contextId . '\' LIMIT 0, 1');
-		if (mysqli_errno()) {
-			echo mysqli_error();
+		if ($answer_query == false) {
+			echo mysqli_error($mysqli);
 		} else {
 			$context = mysqli_fetch_assoc($answer_query);
 			$_SESSION['context'] = $context;

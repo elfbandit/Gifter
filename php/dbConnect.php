@@ -1,32 +1,31 @@
 <?php
-if(!defined($mysqli)){
-//$con=mysqli_connect("127.0.0.1","gifterUser","","gifter");
-$mysqli = new mysqli("localhost", "shiden", "DCNUSgdSWy");
-$mysqli->select_db("shiden_gifter");
+
+$mysqli = mysqli_connect("localhost", "shiden", "DCNUSgdSWy","shiden_gifter");
+//$mysqli->select_db("shiden_gifter");
+
+if(isset($_GET['XDEBUG_SESSION_START'])){
+	//local conneciton, use local path
+	$server_path = "http://localhost/gifter";
+} else{
+	//production server; use no path
+	$server_path = "";
 }
-$server_path = "";
 
 // Check connection
-if ($mysqli->connect_error) {
+if (mysqli_connect_errno($mysqli)) {
     die("Connection failed: " . $mysqli->connect_error);
 } 
 
 //generic query function
 function query($queryString) {
+$mysqli = mysqli_connect("localhost", "shiden", "DCNUSgdSWy","shiden_gifter");
 
-if(!defined($mysqli)){
-//$con=mysqli_connect("127.0.0.1","gifterUser","","gifter");
-$mysqli = new mysqli("localhost", "shiden", "DCNUSgdSWy");
-$mysqli->select_db("shiden_gifter");
+$result = mysqli_query($mysqli,$queryString);
+if($mysqli->error !== ''){
+	echo "Error executing query: " . $mysqli->error;
 }
 
-if ($result = $mysqli->query($queryString) === TRUE) {
-	echo $queryString;
-	echo $result->num_rows;
 return $result;
-} else {
-echo "Error executing query: " . $mysqli->error;
-}
 }
 
 function print_error($errorString) {

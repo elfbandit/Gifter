@@ -15,7 +15,7 @@ if(mysqli_num_rows($result) == 0){
 $result = query("UPDATE gifts SET gifterId = '" . $_SESSION['userInfo']['userId'] ."' WHERE giftId = " . $_POST["giftId"]." AND userId=".$_SESSION['context']['userId']);
  
  
- if (mysqli_errno($con))
+ if (mysqli_errno($mysqli))
   {
   	$jTableResult['Result'] = "FAIL";
   }else{

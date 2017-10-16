@@ -39,14 +39,14 @@ if (ISSET($_POST['exchangeId'])) {
 		query("UPDATE gifts set gifted = true 
 				WHERE userId IN(". implode(",", $userIds).")
 				AND gifterId IN(". implode(",", $userIds).")");
-		if(mysqli_errno() != 0){
+		if(mysqli_errno($mysqli) != 0){
 			print_error("Could not close exchange");
 			return;
 		}
 		
 	//Soft-delete the exchange
 		query("UPDATE exchange SET active=FALSE WHERE exchangeId='" . $exchangeId . "'");
-		if(mysqli_errno() != 0){
+		if(mysqli_errno($mysqli) != 0){
 			print_error("Could not close exchange");
 		}else{
 			//Send an email to all affected users

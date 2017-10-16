@@ -17,7 +17,7 @@ function commentList(&$jTableResult) {
 }
 
 function commentCreate(&$jTableResult) {
-	$comment = mysqli_real_escape_string($_POST["comment"]);
+	$comment = mysqli_real_escape_string($mysqli,$_POST["comment"]);
 	if (strlen($comment) > 255) {
 		$jTableResult['Message'] = "Your description is too long!";
 		$jTableResult['Result'] = "ERROR";

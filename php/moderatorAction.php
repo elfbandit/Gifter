@@ -3,8 +3,8 @@ include 'dbConnect.php';
 session_start();
 
 $jTableResult = array();
-$userId = mysqli_real_escape_string($_POST['userId']);
-$exchangeId = mysqli_real_escape_string($_POST['exchangeId']);
+$userId = mysqli_real_escape_string($mysqli,$_POST['userId']);
+$exchangeId = mysqli_real_escape_string($mysqli,$_POST['exchangeId']);
 
 //Make sure the exchange is still open
 if (exchangeActive($exchangeId) == FALSE) {

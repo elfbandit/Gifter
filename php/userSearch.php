@@ -2,14 +2,14 @@
 include 'dbConnect.php';
 session_start();
 
-$term = mysqli_real_escape_string($_GET["term"]);
+$term = mysqli_real_escape_string($mysqli,$_GET["term"]);
 if(strlen($description) >=255){
 	$jTableResult['Message'] = "Your search term is too long!";
 	$jTableResult['Result'] = "ERROR";
 	print json_encode($jTableResult);
 	return;
 }
-$exchangeId = mysqli_real_escape_string($_GET["exchangeId"]);
+$exchangeId = mysqli_real_escape_string($mysqli,$_GET["exchangeId"]);
 
 if($exchangeId != null){
 //Select all users that are associated with this user's active exchanges
