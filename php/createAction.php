@@ -28,7 +28,7 @@ $result = query("INSERT INTO gifts(name,link,description,value,userId) values('"
  } else{
  
 	//Get last inserted record (to return to jTable)
-	$result = query("SELECT * FROM gifts WHERE giftId = LAST_INSERT_ID()");
+	$result = query("SELECT * FROM gifts WHERE userId = ".$_SESSION["userInfo"]["userId"]. " ORDER BY giftId DESC LIMIT 0,1");
 	$row = mysqli_fetch_array($result);
  
 	//Return result to jTable
