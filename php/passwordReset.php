@@ -51,8 +51,8 @@ if (isset($_POST['resetemail'])) {//need email to be passed in request
 
 	if (mysqli_num_rows($result) > 0) {//hash is valid; set the new password
 		$newpassword = mysqli_escape_string($mysqli,$_POST['newpassword']);
-		$result = "UPDATE user SET password = '" . md5($newpassword) . "' WHERE password = '" . md5($hash) . "'";
-		query($query);
+		$query = "UPDATE user SET password = '" . md5($newpassword) . "' WHERE password = '" . md5($hash) . "'";
+		$result = query($query);
 		if ($result == false) {//return an error if transaction was unsuccessful
 			$message = 'Error: was not able to update password. Please check database status.';
 		} else {
