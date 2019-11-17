@@ -13,6 +13,7 @@
         <script src="js/jquery-1.10.2.min.js"></script>
         <script src="js/jquery-ui/js/jquery-ui-1.10.3.custom.min.js"></script>
 		<script src="js/vendor/modernizr.js"></script>
+		<script src="js/prettydate.min.js"></script>
         <title>Gifter exchange</title>
     </head>
     <body>

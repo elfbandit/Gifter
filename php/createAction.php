@@ -19,7 +19,12 @@ if(strlen($description) > 255){
 	print json_encode($jTableResult);
 	return;
 }
-$value = mysqli_real_escape_string($mysqli,$_POST["value"]);
+
+if($_POST["value"] == null ){
+	 $value = 0;
+}else{
+	$value = mysqli_real_escape_string($mysqli,$_POST["value"]);
+}
 
 //Insert new gift
 $result = query("INSERT INTO gifts(name,link,description,value,userId) values('" . $name . "', '" . $link . "', '" . $description. "', '" . $value."','".$_SESSION["userInfo"]["userId"]."')");

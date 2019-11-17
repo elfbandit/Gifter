@@ -134,7 +134,7 @@ $(document).ready(function() {
     	
     //MAIN DISPLAY TABLE
 	$('#mainTableContainer').jtable({
-		title : context.firstName+'\'s Wishlist',
+		title : context.firstName+'\'s Wishlist <div style="display:inline-block; float:right"> <span class="prettydate"></span></div>',
 		deleteConfirmation : false,
 		
 		//selecting : true,
@@ -244,6 +244,12 @@ $(document).ready(function() {
 	});
 
 	$('#mainTableContainer').jtable('load');
+	if(context.userId != userInfo.userId){ //pretty date the last updated timestamp
+		$(".prettydate").prettydate({
+			date: context.lastUpdated,
+    		dateFormat: "YYYY-MM-DD hh:mm:ss"
+		}).prepend("Last Updated "); 
+	}
 });
 
 
