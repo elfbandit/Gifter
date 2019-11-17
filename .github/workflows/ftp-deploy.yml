@@ -11,7 +11,7 @@ jobs:
     - name: FTP-Deploy-Action
       uses: SamKirkland/FTP-Deploy-Action@2.0.0
       env:
-        FTP_SERVER: ftp.hosted10.nfoservers.com
+        FTP_SERVER: hosted10.nfoservers.com
         FTP_USERNAME: shiden
         FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
         METHOD: sftp
