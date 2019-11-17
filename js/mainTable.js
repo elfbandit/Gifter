@@ -32,7 +32,7 @@ $(document).ready(function() {
 			},
 			}
 		}
-	});
+	);
 
 	$('#mainTableContainer').jtable('load');
 });
