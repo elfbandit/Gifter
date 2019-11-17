@@ -14,7 +14,7 @@ jobs:
         FTP_SERVER: hosted10.nfoservers.com
         FTP_USERNAME: shiden
         FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        REMOTE_DIR: /usr/www/shiden/public/Gifter
         METHOD: sftp
-        POST: 7280
         ARGS: --delete
         # --delete arg will delete files on the server if you've deleted them in git
